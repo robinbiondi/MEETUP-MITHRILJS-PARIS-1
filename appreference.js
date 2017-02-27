@@ -23,7 +23,8 @@ App.addTask = function addTask(e) {
 }
 
 App.deleteTask = function deleteTask(index) {
-    App.tasks.splice(index, 1);
+  var self = this;
+  self.tasks.splice(index, 1);
 };
 
 App.view = function view() {
@@ -46,18 +47,17 @@ App.view = function view() {
       task: taskLabel,
       delete: self.deleteTask.bind(null, key),
     });
-  }
-
   // function displayTask(task) {
   //   return m('.task.task--existing', task);
   // }
+  }
 };
 
 
 
 m.mount(document.getElementById('app'), App);
 
-// Task Component
+
 
 var task = {};
 

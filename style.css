@@ -31,6 +31,8 @@
   border: none;
   border-top: solid 1px rgba(255,255,255, 0.3);
   background-color: #F596A7;
+  position: relative;
+  overflow: hidden;
 }
 
 .task--existing {
@@ -39,6 +41,33 @@
 
 .task--new {
   background-color: #F2385A;
+}
+
+.task__delete {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  border: solid 2px #fff;
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  right: -100px;
+  transition: color 0.2s, background-color 0.2s, opacity 0.2s, right 0.2s ease-out;
+}
+
+.task:hover .task__delete {
+  opacity: 1;
+  right: 10px;
+}
+
+.task__delete:hover {
+  background-color: #fff;
+  color: transparent;
 }
 
 @keyframes unfold {
