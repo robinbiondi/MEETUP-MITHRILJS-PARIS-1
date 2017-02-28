@@ -1,3 +1,7 @@
+/*
+* Component View + Mount + initData + input
+*
+*/
 
 var App = {};
 
@@ -13,6 +17,7 @@ App.setNewTask = function setNewTask(value) {
   self.newTask = value;
 };
 
+
 App.addTask = function addTask(e) {
   var self = this;
   
@@ -22,17 +27,11 @@ App.addTask = function addTask(e) {
   self.newTask = '';
 }
 
-App.deleteTask = function deleteTask(index) {
-  var self = this;
-  self.tasks.splice(index, 1);
-};
-
 App.view = function view() {
   var self = this;
   
   return m('div.list', [
     m('div.list__header', 'TODO'),
-    self.tasks.map(displayTask),
     m('input.task.task--new', {
       type       : 'text',
       placeholder: 'Add a task',
@@ -41,35 +40,6 @@ App.view = function view() {
       onkeydown  : self.addTask.bind(self),
     })
   ]);
-  
-  function displayTask(taskLabel, key) {
-    return m(task, {
-      task: taskLabel,
-      delete: self.deleteTask.bind(self, key),
-    });
-  // function displayTask(task) {
-  //   return m('.task.task--existing', task);
-  // }
-  }
-};
-
-
+}
 
 m.mount(document.getElementById('app'), App);
-
-
-
-var task = {};
-
-task.controller = function controller() {};
-
-task.view = function view(vnode) {
-  return m('.task.task--existing',[
-    vnode.attrs.task,
-    m('.task__delete', {
-      onclick: vnode.attrs.delete,
-    }, 'Delete')
-  ]);
-};
-
-

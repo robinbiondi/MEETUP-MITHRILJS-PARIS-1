@@ -1,6 +1,6 @@
 /*
 * Component View + Mount + initData + input 
-* + Items as components + deletion
+* + Items as components 
 */
 
 // ------------ APP COMPONENT --------------
@@ -29,11 +29,6 @@ App.addTask = function addTask(e) {
   self.newTask = '';
 }
 
-App.deleteTask = function deleteTask(index) {
-  var self = this;
-  self.tasks.splice(index, 1);
-};
-
 App.view = function view() {
   var self = this;
   
@@ -52,8 +47,6 @@ App.view = function view() {
   function displayTask(taskLabel, key) {
     return m(task, {
       label: taskLabel,
-      delete: self.deleteTask.bind(self, key),
-      
     });
   }
 }
@@ -70,8 +63,5 @@ task.controller = function controller() {};
 task.view = function view(vnode) {
   return m('.task.task--existing',[
     vnode.attrs.label,
-    m('.task__delete', {
-      onclick: vnode.attrs.delete,
-    }, 'Delete')
   ]);
 };
