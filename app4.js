@@ -1,3 +1,4 @@
+
 /*
 * Component View + Mount + initData + input 
 * + Items as components 
@@ -58,7 +59,6 @@ m.mount(document.getElementById('app'), App);
 
 var task = {};
 
-task.controller = function controller() {};
 
 task.view = function view(vnode) {
   return m('.task.task--existing',[
