@@ -46,7 +46,7 @@ App.view = function view() {
   ]);
 
   function displayTask(taskLabel, key) {
-    return m(task, {
+    return m(Task, {
       label: taskLabel,
     });
   }
@@ -57,10 +57,10 @@ m.mount(document.getElementById('app'), App);
 
 // ----------- TASK COMPONENT --------------
 
-var task = {};
+var Task = {};
 
 
-task.view = function view(vnode) {
+Task.view = function view(vnode) {
   return m('.task.task--existing',[
     vnode.attrs.label,
   ]);

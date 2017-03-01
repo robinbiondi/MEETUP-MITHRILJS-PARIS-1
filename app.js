@@ -6,7 +6,7 @@
 
 // ----------- MODEL --------------
 
-var Task = {
+var TaskModel = {
   list: [],
   addTask: function addTask(newTask) {
     var self = this;
@@ -40,7 +40,7 @@ App.onkeydown = function onkeydown(e) {
   
   if (e.keyCode !== 13)
     return;
-  Task.addTask(self.newTask);
+  TaskModel.addTask(self.newTask);
   self.newTask = '';
 }
 
@@ -49,7 +49,7 @@ App.view = function view() {
   
   return m('div.list', [
     m('div.list__header', 'TODO'),
-    Task.list.map(displayTask),
+    TaskModel.list.map(displayTask),
     m('input.task.task--new', {
       type       : 'text',
       placeholder: 'Add a task',
@@ -60,9 +60,10 @@ App.view = function view() {
   ]);
 
   function displayTask(taskLabel, key) {
-    return m(task, {
+    return m(Task, {
       label: taskLabel,
-      delete: Task.deleteTask.bind(Task, key),
+      delete: TaskModel.deleteTask.bind(TaskModel, key),
+      
     });
   }
 }
@@ -72,9 +73,11 @@ m.mount(document.getElementById('app'), App);
 
 // ----------- TASK COMPONENT --------------
 
-var task = {};
+var Task = {};
 
-task.view = function view(vnode) {
+Task.controller = function controller() {};
+
+Task.view = function view(vnode) {
   return m('.task.task--existing',[
     vnode.attrs.label,
     m('.task__delete', {
